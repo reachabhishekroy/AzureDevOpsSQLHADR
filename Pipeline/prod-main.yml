@@ -218,7 +218,21 @@ stages:
         errorActionPreference: continue                   
 
     - task: AzurePowerShell@4
-      displayName: 'SQLVMs - Domain Join'
+      displayName: 'SQLVMs - Domain Join Region A'
+      inputs:
+        azureSubscription: ${{ variables.azureSubscription }}
+        ScriptType: 'FilePath'
+        ScriptPath: ${{ variables.scriptroot }}\deploy.ps1
+        ScriptArguments: '-DeploymentName ADjoin-$(Build.BuildNumber)
+                          -TemplateFile ${{ variables.armroot }}\AD\deploy.json
+                          -ParametersFile ${{ variables.paramsroot }}\AD\${{ variables.paramsfileprefix}}.parameters.json
+                          -ResourceGroupParametersFile ${{ variables.paramsroot }}\ResourceGroup\${{ variables.paramsfileprefix}}.parameters.json'
+
+        azurePowerShellVersion: LatestVersion
+        errorActionPreference: continue
+        
+    - task: AzurePowerShell@4
+      displayName: 'SQLVMs - Domain Join Region B'
       inputs:
         azureSubscription: ${{ variables.azureSubscription }}
         ScriptType: 'FilePath'
@@ -229,8 +243,8 @@ stages:
                           -ResourceGroupParametersFile ${{ variables.paramsroot }}\ResourceGroup\${{ variables.paramsfileprefixdr}}.parameters.json'
 
         azurePowerShellVersion: LatestVersion
-        errorActionPreference: continue     
-
+        errorActionPreference: continue
+        
     - task: AzurePowerShell@4
       displayName: 'SQLVM windows cluster and Always-On group prereq'
       inputs:
