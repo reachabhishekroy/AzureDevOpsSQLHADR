@@ -133,7 +133,7 @@ stages:
         ScriptType: 'FilePath'
         ScriptPath: ${{ variables.scriptroot }}\Deploy.ps1
         ScriptArguments: '-DeploymentName SQLVM1-$(Build.BuildNumber)
-                          -TemplateFile ${{ variables.armroot }}\VM1\${{ variables.paramsfileprefix }}.deploy.json
+                          -TemplateFile ${{ variables.armroot }}\SQLVM\${{ variables.paramsfileprefix }}.deploy.json
                           -ParametersFile ${{ variables.paramsroot }}\VM1\${{ variables.paramsfileprefix }}.parameters.json
                           -ResourceGroupParametersFile ${{ variables.paramsroot }}\ResourceGroup\${{ variables.paramsfileprefix }}.parameters.json'
 
@@ -148,7 +148,7 @@ stages:
         ScriptType: 'FilePath'
         ScriptPath: ${{ variables.scriptroot }}\Deploy.ps1
         ScriptArguments: '-DeploymentName SQLVM2-$(Build.BuildNumber)
-                          -TemplateFile ${{ variables.armroot }}\VM2\deploy.json
+                          -TemplateFile ${{ variables.armroot }}\SQLVM\deploy.json
                           -ParametersFile ${{ variables.paramsroot }}\VM2\${{ variables.paramsfileprefix }}.parameters.json
                           -ResourceGroupParametersFile ${{ variables.paramsroot }}\ResourceGroup\${{ variables.paramsfileprefix }}.parameters.json'
 
@@ -162,7 +162,7 @@ stages:
         ScriptType: 'FilePath'
         ScriptPath: ${{ variables.scriptroot }}\Deploy.ps1
         ScriptArguments: '-DeploymentName SQLVMDR-$(Build.BuildNumber)
-                          -TemplateFile ${{ variables.armroot }}\VMDR\${{ variables.paramsfileprefixdr }}.deploy.json
+                          -TemplateFile ${{ variables.armroot }}\SQLVM\${{ variables.paramsfileprefixdr }}.deploy.json
                           -ParametersFile ${{ variables.paramsroot }}\VMDR\${{ variables.paramsfileprefixdr }}.parameters.json
                           -ResourceGroupParametersFile ${{ variables.paramsroot }}\ResourceGroup\${{ variables.paramsfileprefixdr }}.parameters.json'
 
