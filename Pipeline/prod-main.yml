@@ -92,14 +92,28 @@ stages:
         ScriptPath: ${{ variables.scriptroot }}\Deploy.ps1
         ScriptArguments: '-DeploymentName KV-$(Build.BuildNumber)
                           -TemplateFile ${{ variables.armroot }}\KV\deploy.json
-                          -ParametersFile ${{ variables.paramsroot }}\KV\${{ variables.paramsfileprefixdr }}.parameters.json
-                          -ResourceGroupParametersFile ${{ variables.paramsroot }}\ResourceGroup\${{ variables.paramsfileprefixdr }}.parameters.json'
+                          -ParametersFile ${{ variables.paramsroot }}\KV\${{ variables.paramsfileprefix }}.parameters.json
+                          -ResourceGroupParametersFile ${{ variables.paramsroot }}\ResourceGroup\${{ variables.paramsfileprefix }}.parameters.json'
 
         azurePowerShellVersion: LatestVersion
         errorActionPreference: continue
 
     - task: AzurePowerShell@4
-      displayName: 'SQL AlwaysOn - Load balancer'
+      displayName: 'SQL AlwaysOn - Load balancer-HA'
+      inputs:
+        azureSubscription: ${{ variables.azureSubscription }}
+        ScriptType: 'FilePath'
+        ScriptPath: ${{ variables.scriptroot }}\deploy.ps1
+        ScriptArguments: '-DeploymentName SQLAOLB-$(Build.BuildNumber)
+                          -TemplateFile ${{ variables.armroot }}\SQLAOLB\deploy.json
+                          -ParametersFile ${{ variables.paramsroot }}\SQLAOLB\${{ variables.paramsfileprefix}}.parameters.json
+                          -ResourceGroupParametersFile ${{ variables.paramsroot }}\ResourceGroup\${{ variables.paramsfileprefix}}.parameters.json'
+
+        azurePowerShellVersion: LatestVersion
+        errorActionPreference: continue
+        
+    - task: AzurePowerShell@4
+      displayName: 'SQL AlwaysOn - Load balancer-DR'
       inputs:
         azureSubscription: ${{ variables.azureSubscription }}
         ScriptType: 'FilePath'
@@ -110,7 +124,8 @@ stages:
                           -ResourceGroupParametersFile ${{ variables.paramsroot }}\ResourceGroup\${{ variables.paramsfileprefixdr}}.parameters.json'
 
         azurePowerShellVersion: LatestVersion
-        errorActionPreference: continue 
+        errorActionPreference: continue         
+        
 
     - task: AzurePowerShell@4
       displayName: 'Deploy Managed Availbility Set'
