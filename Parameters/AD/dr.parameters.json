@@ -1,0 +1,26 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "northeurope"
+        },
+        "vmList": {
+            "value": "sqlvmdr"
+        },
+        "domainJoinUserName": { 
+           "value": "youradjoinuser@yourdomainnamefullyqualified.net"
+        },        
+        "domainJoinUserPassword": { 
+            "reference": {
+                "keyVault": {
+                "id": "/subscriptions/<YoursubscriptionID>/resourceGroups/<Yourresourcegroup>/providers/Microsoft.KeyVault/vaults/<YourKeyVaultName>"
+                },
+            "secretName": "adjoinusernameinKeyVault"
+            }
+        },
+        "domainFQDN": {
+           "value": "Yourfullyqualifieddomainname.net" 
+        }
+    }
+}
