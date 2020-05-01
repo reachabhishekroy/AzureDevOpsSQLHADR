@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "existingFailoverClusterName": {
+            "value": "sqlhaclu"
+        },
+        "existingVmList": {
+            "value": "sqlvmdr"
+        },
+        "existingSqlAvailabilityGroup": {
+            "value": "sqlag1"
+        },
+        "Listener": {
+            "value": "consqldr"
+        },
+        "ListenerPort": {
+            "value": 1433
+        },
+        "ListenerIp": {
+            "value": "YourDRListenerIP"
+        },
+        "existingVnetResourcegroup": {
+            "value": "YourVNETRG"
+        },
+        "existingVnet": {
+            "value": "YourVNET"
+        },
+        "existingSubnet": {
+            "value": "YourSubnet"
+        },
+        "existingInternalLoadBalancer": {
+            "value": "lbsqldr"
+        },
+        "ProbePort": {
+            "value": 59999
+        }     
+    }
+} 
