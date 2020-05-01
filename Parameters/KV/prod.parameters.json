@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "keyVaultName": {
+        "value": "Your-KV-Name"
+      },
+      "enabledForDeployment": {
+        "value": true
+      },
+      "enabledForDiskEncryption": {
+        "value": true
+      },
+      "enabledForTemplateDeployment": {
+        "value": true
+      },
+      "objectId": {
+        "value": "Object-ID-for-Access-to-KV"
+      },
+      "tenantId": {
+        "value": "Your-tenant-ID"
+      },
+      "keysPermissions": {
+        "value": ["all"]
+      },
+      "secretsPermissions": {
+        "value": ["all"]
+      },
+      "skuName": {
+        "value": "Standard"
+      }
+    }
+}
