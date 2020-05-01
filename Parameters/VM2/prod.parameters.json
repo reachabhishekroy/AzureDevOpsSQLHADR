@@ -13,7 +13,7 @@
         "value": "sqlvm02"
       },
       "adminUsername": {
-        "value": "sqladmin"
+        "value": "Your-VM-Admin-UserName"
       },
       "adminPassword": {
           "reference": {
