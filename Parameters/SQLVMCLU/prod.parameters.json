@@ -1,0 +1,52 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "failoverClusterName": {
+            "value": "sqlhaclu"
+        },
+        "existingVmList": {
+            "value": "sqlvm01,sqlvm02,sqlvmdr"
+        },
+        "sqlServerLicenseType": {
+            "value": "PAYG"
+        },
+        "existingVmResourceGroup": {
+            "value": "Your-Resource-Group"
+        },
+        "sqlServerVersion": {
+            "value": "SQL2017"
+        },
+        "existingFullyQualifiedDomainName": {
+            "value": "YourFQDN.net"
+        },
+        "existingDomainAccount": {
+            "value": "YourServiceAccountDomain@YourFQDN.net"
+        },
+        "domainAccountPassword": {
+            "reference": {
+                "keyVault": {
+                "id": "/subscriptions/<SUBID>/resourceGroups/<YourResourceGroup>/providers/Microsoft.KeyVault/vaults/<YourKeyVault>"
+                },
+            "secretName": "yourServiceAccountDomain"
+            }
+        },
+        "existingSqlServiceAccount": {
+            "value": "YourServiceAccountDomain@YourFQDN.net"
+        },  
+        "sqlServicePassword": {
+            "reference": {
+                "keyVault": {
+                "id": "/subscriptions/<SUBID>/resourceGroups/<YourResourceGroup>/providers/Microsoft.KeyVault/vaults/<YourKeyVault>"
+                },
+            "secretName": "yourServiceAccountDomain"
+            }
+        },
+        "cloudWitnessName": {
+            "value": "sqlhasa"
+        },
+        "_artifactsLocation": {
+            "value": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-sql-vm-ag-setup"
+        }                                        
+    }
+} 
