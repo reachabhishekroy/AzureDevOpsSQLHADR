@@ -1,0 +1,21 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "westeurope"
+        },
+        "name": {
+            "value": "lbsqlha"
+        },
+        "sku": {
+            "value": "Basic"
+        },
+        "subnetId": {
+            "value": "/subscriptions/<YoursubcriptionID>/resourceGroups/<YourResourceGroup>/providers/Microsoft.Network/virtualNetworks/<YourVNETName>/subnets/<YourSubnetName>"
+        },
+        "privateIPAllocationMethod": {
+            "value": "Dynamic"
+        }
+    }
+}
